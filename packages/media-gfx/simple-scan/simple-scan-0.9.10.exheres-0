@@ -1,0 +1,31 @@
+# Copyright 2010 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome-2 launchpad [ branch=trunk ]
+
+SUMMARY="Simple Scanning Utility"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        sys-devel/gettext
+    build+run:
+        dev-libs/dbus-glib
+        dev-libs/glib:2
+        gnome-platform/GConf
+        media-gfx/sane-backends
+        sys-fs/udev[glib]
+        x11-libs/cairo
+        x11-libs/gtk+:2
+    run:
+        gnome-desktop/gnome-icon-theme
+        x11-apps/xdg-utils
+"
+
+BUGS_TO="oahong@gmail.com"
+
