@@ -1,0 +1,35 @@
+# Copyright 2010 Paul Seidler <bl4sph3my@online.de>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Decode MPEG-2, MPEG-4, H.264, VC-1, WMV3 with gstreamer via VA API"
+HOMEPAGE="http://www.splitted-desktop.com/~gbeauchesne/gstreamer-vaapi/"
+DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0.10"
+PLATFORMS="~amd64"
+MYOPTIONS="gtk-doc
+    opengl [[ description = [ Build OpenGL video output ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        gtk-doc? ( dev-doc/gtk-doc[>=1.12] )
+    build+run:
+        dev-libs/glib:2
+        media/ffmpeg[>=0.6][va]
+        media-libs/gstreamer:0.10[>=0.10.0]
+        media-plugins/gst-plugins-base:0.10[>=0.10.16]
+        x11-libs/libva[>=0.31.0]
+        x11-libs/libX11
+        opengl? ( x11-dri/mesa )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'gtk-doc'
+    'opengl glx'
+    'opengl vaapi-glx'
+    'opengl vaapisink-glx'
+)
+
