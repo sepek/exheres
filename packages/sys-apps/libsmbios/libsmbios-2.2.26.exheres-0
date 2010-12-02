@@ -1,0 +1,50 @@
+# Copyright 2010 Paul Seidler <bl4sph3my@online.de>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Provide access to SMBIOS information"
+DESCRIPTION="The libsmbios project aims towards providing access to as much BIOS information as
+possible. It does this by providing a library of functions that can be used as well as sample
+binaries."
+HOMEPAGE="http://linux.dell.com/libsmbios/main/index.html"
+DOWNLOADS="http://linux.dell.com/${PN}/download/${PN}/${PNV}/${PNV}.tar.bz2"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="doc
+    python [[ description = [ Build and install python utilities ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.9.0]
+        sys-devel/gettext[>=0.14]
+        doc? (
+            app-doc/doxygen
+            media-gfx/graphviz
+        )
+    build+run:
+        dev-libs/libxml2:2.0
+        python? ( dev-lang/python:*[>=2.3] )
+"
+#    test:
+#        dev-cpp/cppunit
+
+# fails due to a bug in cppunit
+RESTRICT="test"
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'python' 'doc doxygen' 'doc graphviz' )
+
+src_install() {
+    default
+
+    edo rm -r \
+        "${IMAGE}"/etc/yum/{pluginconf.d/,} \
+        "${IMAGE}"/usr/lib/yum-plugins/
+    edo rmdir "${IMAGE}"/usr/{bin/,include/,lib/}
+    option !python && \
+        edo rmdir \
+            "${IMAGE}"/etc/{libsmbios/,} \
+            "${IMAGE}"/libsmbios_c/ \
+            "${IMAGE}"/usr/share/smbios-utils/
+}
+
