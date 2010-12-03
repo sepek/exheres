@@ -1,0 +1,32 @@
+# Copyright 2010 Paul Seidler <bl4sph3my@online.de>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
+SUMMARY="EET is a tiny library designed to write an arbitary set of chunks of data to a file and optionally compress each chunk (very much like a zip file) and allow fast random-access reading of the file later on."
+HOMEPAGE="http://trac.enlightenment.org/e/wiki/Eet"
+DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
+WORK="${WORKBASE}/${MY_PNV}"
+
+LICENCES="LGPL-2"
+SLOT="1"
+PLATFORMS="~amd64"
+
+MYOPTIONS="doc ( gnutls ssl ) [[ number-selected = exactly-one ]]"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        doc? ( app-doc/doxygen )
+    build+run:
+        enlightenment-platform/eina[>=1.0.0-beta]
+        media-libs/jpeg
+        sys-libs/zlib
+        gnutls? ( dev-libs/gnutls[>=1.7.6] )
+        ssl? ( dev-libs/openssl )
+    test:
+        dev-libs/check[>=0.9.4]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-amalgamation )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gnutls' 'ssl openssl' )
+
