@@ -1,0 +1,36 @@
+# Copyright 2010 Paul Seidler <bl4sph3my@online.de>
+# Distributed under the terms of the GNU General Public License v2
+
+require geexbox
+
+SUMMARY="Media gabber written in C"
+SUMMARY="internet media grabber for metadata"
+DESCRIPTION="
+libvalhalla is a library written in C. It is a media scanner, that stores various information in an
+SQLite database and relies on FFmpeg (libavformat and libavutil) and libcurl. It features many
+Internet grabbers that allows automatic download of covers, lyrics, informations on media files,
+tags retrival in video and music files and so on.
+"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="exif [[ description = [ enable EXIF grabber ] ]]"
+
+DEPENDENCIES="
+    build+run:
+        dev-db/sqlite:3
+        dev-libs/libxml2:2.0
+        net-misc/curl
+        media/ffmpeg
+        exif? ( media-libs/libexif )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS+=( '--disable-grabber-nfo' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=( 'exif grabber-exif' )
+
+src_test() {
+    emake -j1 tests
+    tests/vh_test
+}
+
