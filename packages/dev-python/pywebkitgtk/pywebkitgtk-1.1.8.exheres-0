@@ -1,4 +1,4 @@
-# Copyright 2010 Paul Seidler <bl4sph3my@online.de>
+# Copyright 2010 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
 require googlecode python [ python_dep=2.4 ]
