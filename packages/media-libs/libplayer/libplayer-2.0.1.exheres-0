@@ -1,20 +1,17 @@
 # Copyright 2010 Paul Seidler <bl4sph3my@online.de>
 # Distributed under the terms of the GNU General Public License v2
 
+require geexbox
+
 SUMMARY="multimedia A/V abstraction layer API"
-HOMEPAGE="http://libplayer.geexbox.org/"
-DOWNLOADS="${HOMEPAGE}/releases/${PNV}.tar.bz2"
 
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="doc
+MYOPTIONS="
 ( gstreamer mplayer vlc xine ) [[ number-selected = at-least-one ]] "
 
 DEPENDENCIES="
-    build:
-        dev-util/pkg-config
-        doc? ( app-doc/doxygen )
     build+run:
         x11-libs/libxcb
         gstreamer? ( media-libs/gstreamer )
@@ -25,10 +22,5 @@ DEPENDENCIES="
 
 # no tests available
 RESTRICT="test"
-DEFAULT_SRC_CONFIGURE_PARAMS=(
-    '--hates=host' '--hates=build' '--hates=infodir' '--hates=datadir' '--hates=sysconfdir'
-    '--hates=localstatedir' '--hates=disable-dependency-tracking' '--hates=disable-silent-rules'
-    '--hates=enable-fast-install'
-)
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc' 'gstreamer' 'mplayer' 'vlc' 'xine' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=( 'gstreamer' 'mplayer' 'vlc' 'xine' )
 
