@@ -18,7 +18,18 @@ DEPENDENCIES="
         dev-libs/glib:2[>=2.4]
         sys-apps/dbus[>=0.51]
         dev-libs/dbus-glib:1[>=0.51]
-        net-im/telepathy-glib[>=0.8.0]
+        net-im/telepathy-glib[>=0.11.3]
         dev-libs/openssl[>=0.9.7]
+    test:
+        net-twisted/twisted
+        net-twisted/twisted-words
 "
+
+src_test() {
+    sydboxcmd "net/whitelist/bind/unix-abstract:///tmp/dbus-*"
+    sydboxcmd "net/whitelist/bind/inet://0.0.0.0@6900"
+    sydboxcmd "net/whitelist/connect/inet://127.0.0.1@6900"
+
+    default
+}
 
