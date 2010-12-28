@@ -1,11 +1,11 @@
 # Copyright 2010 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PV="${MY_PV:-${PV/-beta/.beta}}"
+MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
 SUMMARY="Eina is a multi-platform library that provides optimized data types and useful tools for projects."
 HOMEPAGE="http://trac.enlightenment.org/e/wiki/Eina"
-DOWNLOADS="http://download.enlightenment.org/releases/${PN}-${MY_PV}.tar.gz"
-WORK="${WORKBASE}/${PN}-1.0.0.beta2"
+DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
+WORK="${WORKBASE}/${MY_PNV}"
 
 LICENCES="LGPL-2"
 SLOT="1"
@@ -22,7 +22,7 @@ DEPENDENCIES="
         dev-libs/check[>=0.9.4]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-amalgamation )
+DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-amalgamation --enable-tests )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc )
 
 src_install() {
