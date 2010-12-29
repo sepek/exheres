@@ -1,13 +1,13 @@
 # Copyright 2010 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome-2 launchpad [ branch=trunk ]
+require launchpad gnome-2
 
-SUMMARY="Simple Scanning Utility"
+SUMMARY="Simple Scanning Utility for GNOME"
 
 LICENCES="GPL-3"
 SLOT="0"
-PLATFORMS="~x86"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="
@@ -15,13 +15,15 @@ DEPENDENCIES="
         dev-util/intltool
         sys-devel/gettext
     build+run:
-        dev-libs/dbus-glib
+        dev-libs/dbus-glib:1
         dev-libs/glib:2
-        gnome-platform/GConf
+        gnome-platform/GConf:2
         media-gfx/sane-backends
+        media-libs/jpeg
         sys-fs/udev[glib]
+        sys-libs/zlib
         x11-libs/cairo
-        x11-libs/gtk+:2
+        x11-libs/gtk+:2[>=2.18.0]
     run:
         gnome-desktop/gnome-icon-theme
         x11-apps/xdg-utils
