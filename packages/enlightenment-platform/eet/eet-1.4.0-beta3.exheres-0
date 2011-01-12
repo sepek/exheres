@@ -27,6 +27,6 @@ DEPENDENCIES="
         dev-libs/check[>=0.9.4]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --enable-amalgamation --enable-openssl --enable-tests )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gnutls' )
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-amalgamation' '--enable-openssl' '--enable-tests' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc' 'gnutls' )
 
