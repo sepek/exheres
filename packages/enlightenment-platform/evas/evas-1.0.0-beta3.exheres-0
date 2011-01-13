@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
-SUMMARY="Canvas object and rendering"
+SUMMARY="Canvas and scenegraph rendering library"
 DESCRIPTION="Evas is a clean display canvas API, cross-platform, for several target display systems that can draw anti-aliased text, smooth super and sub-sampled scaled images, alpha-blend objects and much more."
 HOMEPAGE="http://trac.enlightenment.org/e/wiki/Eina"
 DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
