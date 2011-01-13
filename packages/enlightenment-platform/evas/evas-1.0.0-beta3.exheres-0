@@ -1,0 +1,125 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
+SUMMARY="Canvas object and rendering"
+DESCRIPTION="Evas is a clean display canvas API, cross-platform, for several target display systems that can draw anti-aliased text, smooth super and sub-sampled scaled images, alpha-blend objects and much more."
+HOMEPAGE="http://trac.enlightenment.org/e/wiki/Eina"
+DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
+WORK="${WORKBASE}/${MY_PNV}"
+
+LICENCES="LGPL-2"
+SLOT="1"
+PLATFORMS="~amd64"
+
+MYOPTIONS="
+    doc
+    eet [[ description = [ EET image and font loader ] ]]
+    examples
+    fontconfig [[ description = [ Support for managing custom fonts via fontconfig ] ]]
+    fribidi [[ description = [ Use the FriBiDi libs for bidirectional unicode ] ]]
+    gif
+    jpeg
+    opengl [[ description = [ OpenGL X11 rendering backend ] ]]
+    png
+    svg
+    tiff
+    xcb [[ description = [ Enable xcb render backend ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+        doc? ( app-doc/doxygen )
+    build+run:
+        enlightenment-platform/eina[>=1.0.0-beta]
+        media-libs/freetype:2
+        eet? ( enlightenment-platform/eet[>=1.0.0-beta] )
+        fontconfig? ( media-libs/fontconfig )
+        fribidi? ( dev-libs/fribidi[>=0.19.2] )
+        gif? ( media-libs/giflib )
+        jpeg? ( media-libs/jpeg )
+        opengl? ( x11-dri/mesa )
+        png? ( media-libs/libpng )
+        svg? ( gnome-desktop/librsvg:2[>=2.14.0] )
+        tiff? ( media-libs/tiff )
+        xcb? ( x11-libs/libxcb
+               x11-libs/libXrender
+               x11-libs/pixman:1
+               x11-utils/xcb-util[>=0.2.1] )
+    recommendation:
+        x11-libs/libXext
+        x11-libs/libXrender
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--enable-async-events'
+    '--enable-async-preload'
+    '--enable-async-render'
+    '--enable-buffer'
+    '--enable-cpu-c'
+    '--enable-pipe-render'
+    '--enable-pthreads'
+
+    # experimental/not ready:
+    '--disable-metric-cache'
+    '--disable-word-cache'
+    '--disable-xrender-x11'
+
+    # TODO/don't need it:
+    '--disable-directfb'
+    '--disable-fb'
+    '--disable-gl-flavor-gles'
+    '--disable-gl-glew'
+    '--disable-gl-sdl'
+    '--disable-image-loader-bmp'
+    '--disable-image-loader-edb'
+    '--disable-image-loader-pmaps'
+    '--disable-image-loader-tga'
+    '--disable-image-loader-xpm'
+    '--disable-line-dither-mask'
+    '--disable-no-dither-mask'
+    '--disable-sdl-primitive'
+    '--disable-small-dither-mask'
+    '--disable-software-8-x11'
+    '--disable-software-16-x11'
+    '--disable-software-sdl'
+    '--disable-static-software-generic'
+    '--disable-static-software-16'
+    '--disable-static-software-8'
+    '--disable-convert-yuv'
+
+    # just use xrender backends
+    '--disable-simple-x11'
+    '--disable-software-xlib'
+    '--disable-software-xcb'
+
+    # bad systems!
+    '--disable-direct3d'
+    '--disable-quartz'
+    '--disable-software-16-ddraw'
+    '--disable-software-16-wince'
+    '--disable-software-ddraw'
+    '--disable-software-gdi'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'doc'
+    'eet image-loader-eet' 'eet font-loader-eet'
+    'examples install-examples'
+    'fontconfig'
+    'fribidi'
+    'gif image-loader-gif'
+    'jpeg image-loader-jpeg'
+    'opengl gl-x11'
+    'png image-loader-png'
+    'svg image-loader-svg'
+    'tiff image-loader-tiff'
+    'xcb xrender-xcb'
+)
+
+src_install() {
+    default
+    option '!examples' && edo rmdir "${IMAGE}"/usr/share/evas/{examples,}
+}
+
