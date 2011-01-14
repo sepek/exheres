@@ -34,7 +34,7 @@ DEPENDENCIES="
     build+run:
         enlightenment-platform/eina[>=1.0.0-beta]
         media-libs/freetype:2
-        eet? ( enlightenment-platform/eet[>=1.0.0-beta] )
+        eet? ( enlightenment-platform/eet[>=1.4.0-beta] )
         fontconfig? ( media-libs/fontconfig )
         fribidi? ( dev-libs/fribidi[>=0.19.2] )
         gif? ( media-libs/giflib )
