@@ -1,0 +1,50 @@
+# Copyright 2010 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Widget Set for enlightenment"
+SNAPDATE="2010-12-03"
+HOMEPAGE="http://trac.enlightenment.org/e/wiki/Elementary"
+DOWNLOADS="http://download.enlightenment.org/snapshots/${SNAPDATE}/${PNV}.tar.gz"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.22]
+        doc? ( app-doc/doxygen )
+    build+run:
+        enlightenment-platform/edje[>=1.0.0-beta]
+        enlightenment-platform/eet[>=1.4.0-beta]
+        enlightenment-platform/eina[>=1.0.0-beta]
+        enlightenment-platform/evas[>=1.0.0-beta]
+        enlightenment-platform/ecore[evas]
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--enable-quick-launch'
+
+    # FIXME: linker problem, maybe missing option for ecore
+    '--disable-ecore-x'
+
+    # missing dependencies
+    '--disable-edbus'
+    '--disable-efreet'
+    '--disable-eweather'
+    '--disable-ethumb'
+
+    # TODO/don't need it
+    '--disable-ecore-fb'
+    '--disable-ecore-sdl'
+    '--disable-ecore-win32'
+    '--disable-ecore-wince'
+
+    # bad systems!
+    '--disable-win32-threads'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'doc' )
+
