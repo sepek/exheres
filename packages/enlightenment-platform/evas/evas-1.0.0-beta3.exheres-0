@@ -24,7 +24,7 @@ MYOPTIONS="
     png
     svg
     tiff
-    xcb [[ description = [ Enable xcb render backend ] ]]
+    X [[ description = [ Enable xcb render backend ] ]]
 "
 
 DEPENDENCIES="
@@ -43,7 +43,7 @@ DEPENDENCIES="
         png? ( media-libs/libpng )
         svg? ( gnome-desktop/librsvg:2[>=2.14.0] )
         tiff? ( media-libs/tiff )
-        xcb? ( x11-libs/libxcb
+        X? ( x11-libs/libxcb
                x11-libs/libXrender
                x11-libs/pixman:1
                x11-utils/xcb-util[>=0.2.1] )
@@ -115,7 +115,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'png image-loader-png'
     'svg image-loader-svg'
     'tiff image-loader-tiff'
-    'xcb xrender-xcb'
+    'X xrender-xcb'
 )
 
 src_install() {
