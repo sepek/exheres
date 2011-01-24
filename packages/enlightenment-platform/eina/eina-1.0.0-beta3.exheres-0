@@ -27,6 +27,6 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc )
 
 src_install() {
     default
-    edo rmdir ${IMAGE}/usr/bin/
+    edo rmdir "${IMAGE}"/usr/bin/
 }
 
