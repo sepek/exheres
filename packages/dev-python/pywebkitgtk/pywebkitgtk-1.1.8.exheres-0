@@ -19,16 +19,3 @@ DEPENDENCIES="
         net-libs/webkit-gtk:1[>=1.1.10]
 "
 
-src_prepare() {
-    default
-
-    # disable python byte compiling
-    rm py-compile
-    ln -s "$(type -P true)" py-compile
-}
-
-src_install() {
-    default
-    python_bytecompile
-}
-
