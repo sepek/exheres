@@ -4,14 +4,12 @@
 MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
 SUMMARY="Abstract GUI layout and animation object library"
 DESCRIPTION="
-Edje is a complex graphical design & layout library based on Evas that provides an abstraction layer
-between the application code and the interface, while allowing extremely flexible dynamic layouts
-and animations.
+Edje is a complex graphical design & layout library based on Evas that provides an abstraction
+layer between the application code and the interface, while allowing extremely flexible dynamic
+layouts and animations.
 Edje supports the the creation of visual elements (borders of windows, scrollbars, etc.) allowing
-the designer to control the layout, look and feel and gui animation of any program using Edje as its
-basic GUI constructor. This library allows for multiple collections of Layouts in one file, sharing
-the same image database and thus allowing a whole theme to be conveniently packaged into one file
-for ease of distribution.
+the designer to control the layout, look and feel and gui animation of any program using Edje as
+its basic GUI constructor.
 "
 HOMEPAGE="http://trac.enlightenment.org/e/wiki/Edje"
 DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"

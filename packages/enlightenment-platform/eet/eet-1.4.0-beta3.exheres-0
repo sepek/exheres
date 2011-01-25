@@ -8,9 +8,6 @@ EET is a tiny library designed to write an arbitary set of chunks of data to a f
 compress each chunk (very much like a zip file) and allow fast random-access reading of the file
 later on. EET files are perfect for storing data that is written once (or rarely) and read many
 times, especially when the program does not want to have to read all the data in at once.
-Use this library when you need to pack C structure and you want to retrieve it quickly with as few
-as possible memory use. You can also use it to serialize data quickly and exchange them between two
-program over ipc or network link.
 "
 HOMEPAGE="http://trac.enlightenment.org/e/wiki/Eet"
 DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
