@@ -21,7 +21,7 @@ PLATFORMS="~amd64"
 MYOPTIONS="
     curl
     doc
-    evas
+    evas [[ description = [ Enable the ecore_evas module for rendering ] ]]
     glib [[ description = [ Integrate glib ] ]]
     opengl [[ requires = [ evas X ] ]]
     X [[ requires = [ evas ] ]]
