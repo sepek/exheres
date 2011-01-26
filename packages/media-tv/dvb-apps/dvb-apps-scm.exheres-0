@@ -1,0 +1,27 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require multilib
+
+SUMMARY="Userspace DVB tools"
+HOMEPAGE="http://www.linuxtv.org/"
+DOWNLOADS=""
+SCM_REPOSITORY="http://linuxtv.org/hg/dvb-apps"
+
+require scm-hg
+
+LICENCES="GPL-2 LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/libusb:0.1
+"
+
+src_prepare() {
+    default
+    edo sed -ie "s:prefix)/lib:prefix)/$(get_libdir):" ${WORK}/Make.rules
+}
+
