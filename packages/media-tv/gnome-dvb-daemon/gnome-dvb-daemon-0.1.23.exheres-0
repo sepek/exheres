@@ -1,7 +1,7 @@
 # Copyright 2011 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org
+require gnome.org gtk-icon-cache
 
 SUMMARY="Daemon to setup your DVB devices, record and watch TV shows and browse EPG"
 HOMEPAGE="http://live.gnome.org/DVBDaemon"
@@ -9,8 +9,9 @@ HOMEPAGE="http://live.gnome.org/DVBDaemon"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="totem"
+MYOPTIONS=""
 
+# totem plugin is automagic
 DEPENDENCIES="
     build:
         dev-util/pkg-config
@@ -33,11 +34,9 @@ DEPENDENCIES="
         sys-fs/udev
     recommendation:
         media-tv/dvb-apps
-    run:
-        totem? ( gnome-desktop/totem[python] )
+    suggestion:
+        gnome-desktop/totem[python]
 "
-
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'totem totem-plugin' )
 
 src_prepare() {
     # the plugin isn't builtin
