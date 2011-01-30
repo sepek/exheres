@@ -22,5 +22,5 @@ DEPENDENCIES="
 
 # no tests available
 RESTRICT="test"
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=( 'gstreamer' 'mplayer' 'vlc' 'xine' )
+GEEXBOX_SRC_CONFIGURE_OPTION_ENABLES+=( 'gstreamer' 'mplayer' 'vlc' 'xine' )
 

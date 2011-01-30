@@ -26,8 +26,8 @@ DEPENDENCIES="
         exif? ( media-libs/libexif )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS+=( '--disable-grabber-nfo' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=( 'exif grabber-exif' )
+GEEXBOX_SRC_CONFIGURE_PARAMS+=( '--disable-grabber-nfo' )
+GEEXBOX_SRC_CONFIGURE_OPTION_ENABLES+=( 'exif grabber-exif' )
 
 src_test() {
     emake -j1 tests
