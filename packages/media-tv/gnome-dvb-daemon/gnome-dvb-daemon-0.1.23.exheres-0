@@ -33,9 +33,9 @@ DEPENDENCIES="
         media-plugins/gst-rtsp:0.10[>=0.10.7]
         sys-fs/udev
     recommendation:
-        media-tv/dvb-apps
+        media-tv/dvb-apps [[ description = [ Provide needed initial scan files ] ]]
     suggestion:
-        gnome-desktop/totem[python]
+        gnome-desktop/totem[python] [[ description = [ GUI to use dvb-daemon ] ]]
 "
 
 src_prepare() {
