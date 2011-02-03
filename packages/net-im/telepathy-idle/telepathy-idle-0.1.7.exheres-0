@@ -21,14 +21,17 @@ DEPENDENCIES="
         net-im/telepathy-glib[>=0.11.3]
         dev-libs/openssl[>=0.9.7]
     test:
+        dev-python/dbus-python
+        dev-python/pyopenssl
         net-twisted/twisted
         net-twisted/twisted-words
 "
 
 src_test() {
-    sydboxcmd "net/whitelist/bind/unix-abstract:///tmp/dbus-*"
-    sydboxcmd "net/whitelist/bind/inet://0.0.0.0@6900"
-    sydboxcmd "net/whitelist/connect/inet://127.0.0.1@6900"
+    esandbox allow_net "unix-abstract:/tmp/dbus-*"
+    esandbox allow_net "inet:0.0.0.0@6900"
+    esandbox allow_net --connect "inet:127.0.0.1@5600"
+    esandbox allow_net --connect "inet:127.0.0.1@6900"
 
     default
 }
