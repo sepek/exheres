@@ -46,12 +46,10 @@ DEPENDENCIES="
         svg? ( gnome-desktop/librsvg:2[>=2.14.0] )
         tiff? ( media-libs/tiff )
         X? ( x11-libs/libxcb
-               x11-libs/libXrender
-               x11-libs/pixman:1
-               x11-utils/xcb-util[>=0.2.1] )
-    recommendation:
-        x11-libs/libXext
-        x11-libs/libXrender
+             x11-libs/libXext
+             x11-libs/libXrender
+             x11-libs/pixman:1
+             x11-utils/xcb-util[>=0.2.1] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
