@@ -27,12 +27,15 @@ DEPENDENCIES="
         net-twisted/twisted-words
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/test-use-localhost.patch" )
+
 src_test() {
     esandbox allow_net "unix-abstract:/tmp/dbus-*"
-    esandbox allow_net "inet:0.0.0.0@6900"
     esandbox allow_net --connect "inet:127.0.0.1@5600"
-    esandbox allow_net --connect "inet:127.0.0.1@6900"
 
     default
+
+    esandbox disallow_net "unix-abstract:/tmp/dbus-*"
+    esandbox allow_net --connect "inet:127.0.0.1@5600"
 }
 
