@@ -2,6 +2,7 @@ From fd6a09dd731b80043227b74e77cdd130d9a49101 Mon Sep 17 00:00:00 2001
 From: Paul Seidler <bl4sph3my@online.de>
 Date: Mon, 7 Feb 2011 17:37:51 +0000
 Subject: [PATCH] test: use localhost
+Upstream: no
 
 ---
  tests/twisted/idletest.py |    4 ++--
