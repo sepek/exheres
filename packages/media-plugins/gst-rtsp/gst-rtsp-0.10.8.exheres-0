@@ -10,7 +10,7 @@ SLOT="0.10"
 PLATFORMS="~amd64"
 MYOPTIONS="gobject-introspection gtk-doc vala"
 
-# python is automagic and won't work with this version
+# python is automagic and can't be enabled due to a bug in configure (fixed upstream)
 DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.8]
