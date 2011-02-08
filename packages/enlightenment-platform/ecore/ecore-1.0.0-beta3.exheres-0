@@ -35,7 +35,7 @@ DEPENDENCIES="
         enlightenment-platform/eina[>=1.0.0-beta]
         dev-libs/openssl
         curl? ( net-misc/curl )
-        evas? ( enlightenment-platform/evas[>=1.0.0-beta][X?] )
+        evas? ( enlightenment-platform/evas[>=1.0.0-beta][X?][opengl?] )
         glib? ( dev-libs/glib:2 )
         X? ( x11-libs/libX11
              x11-libs/libxcb
