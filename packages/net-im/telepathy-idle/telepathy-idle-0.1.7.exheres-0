@@ -36,6 +36,6 @@ src_test() {
     default
 
     esandbox disallow_net "unix-abstract:/tmp/dbus-*"
-    esandbox allow_net --connect "inet:127.0.0.1@5600"
+    esandbox disallow_net --connect "inet:127.0.0.1@5600"
 }
 
