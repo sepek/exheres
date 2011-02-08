@@ -11,7 +11,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
 
-# totem plugin is automagic
+# build of the totem plugin can't be disabled
 DEPENDENCIES="
     build:
         dev-util/pkg-config
