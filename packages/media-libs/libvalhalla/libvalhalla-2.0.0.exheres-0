@@ -31,6 +31,6 @@ GEEXBOX_SRC_CONFIGURE_OPTION_ENABLES+=( 'exif grabber-exif' )
 
 src_test() {
     emake -j1 tests
-    tests/vh_test
+    edo tests/vh_test
 }
 
