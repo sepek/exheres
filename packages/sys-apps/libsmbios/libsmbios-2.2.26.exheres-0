@@ -37,10 +37,10 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'python' 'doc doxygen' 'doc graphviz' )
 src_install() {
     default
 
-    edo rm -r \
+    edo rmdir \
         "${IMAGE}"/etc/yum/{pluginconf.d/,} \
-        "${IMAGE}"/usr/lib/yum-plugins/
-    edo rmdir "${IMAGE}"/usr/{bin/,include/,lib/}
+        "${IMAGE}"/usr/lib/yum-plugins/ \
+        "${IMAGE}"/usr/{bin/,include/,lib/}
     option !python && \
         edo rmdir \
             "${IMAGE}"/etc/{libsmbios/,} \
