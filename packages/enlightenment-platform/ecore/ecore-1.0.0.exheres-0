@@ -1,8 +1,9 @@
 # Copyright 2010 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
-SUMMARY="Core mainloop, display abstraction and utility library"
+require enlightenment
+
+SUMMARY="Core mainloop, display abstraction and utility library, part of Enlightenment"
 DESCRIPTION="
 Ecore is a clean and tiny event loop library with many modules to do lots of convenient
 things for a programmer, to save time and effort.
@@ -10,9 +11,6 @@ It's small and lean, designed to work on embedded systems all the way to large a
 multi-cpu workstations. It serialises all system signals, events etc. into a single event queue,
 that is easily processed without needing to worry about concurrency.
 "
-HOMEPAGE="http://trac.enlightenment.org/e/wiki/Ecore"
-DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
-WORK="${WORKBASE}/${MY_PNV}"
 
 LICENCES="BSD-2"
 SLOT="1"
@@ -20,7 +18,6 @@ PLATFORMS="~amd64"
 
 MYOPTIONS="
     curl
-    doc
     evas [[ description = [ Enable the ecore_evas module for rendering ] ]]
     glib [[ description = [ Integrate glib ] ]]
     opengl [[ requires = [ evas X ] ]]
@@ -28,14 +25,11 @@ MYOPTIONS="
 "
 
 DEPENDENCIES="
-    build:
-        dev-util/pkg-config
-        doc? ( app-doc/doxygen )
     build+run:
-        enlightenment-platform/eina[>=1.0.0-beta]
+        enlightenment-platform/eina[>=1.0.0]
         dev-libs/openssl
         curl? ( net-misc/curl )
-        evas? ( enlightenment-platform/evas[>=1.0.0-beta][X?][opengl?] )
+        evas? ( enlightenment-platform/evas[>=1.0.0][X?][opengl?] )
         glib? ( dev-libs/glib:2 )
         X? ( x11-libs/libX11
              x11-libs/libxcb
@@ -49,7 +43,7 @@ DEPENDENCIES="
 # need X
 RESTRICT="test"
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
+DEFAULT_SRC_CONFIGURE_PARAMS+=(
     '--enable-ecore-con'
     '--enable-ecore-evas-software-buffer'
     '--enable-ecore-ipc'
@@ -97,9 +91,8 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-ecore-evas-software-ddraw'
     '--disable-ecore-evas-software-gdi'
 )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'curl'
-    'doc'
     'evas ecore-evas'
     'evas ecore-imf-evas'
     'evas ecore-input-evas'
