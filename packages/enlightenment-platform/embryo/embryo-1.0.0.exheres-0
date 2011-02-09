@@ -1,0 +1,16 @@
+# Copyright 2010 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment
+
+SUMMARY="Abstract GUI layout and animation object library, part of Enlightenment"
+DESCRIPTION="
+Embryo is a tiny library designed to interpret limited Small programs compiled by the included
+compiler, embryo_cc. It is mostly a cleaned up and smaller version of the original Small abstract
+machine. The compiler is mostly untouched.
+"
+
+LICENCES="BSD-2 ZLIB"
+SLOT="1"
+PLATFORMS="~amd64"
+
