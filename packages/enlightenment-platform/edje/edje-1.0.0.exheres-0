@@ -1,8 +1,9 @@
 # Copyright 2010 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
-SUMMARY="Abstract GUI layout and animation object library"
+require enlightenment
+
+SUMMARY="Abstract GUI layout and animation object library, part of Enlightenment"
 DESCRIPTION="
 Edje is a complex graphical design & layout library based on Evas that provides an abstraction
 layer between the application code and the interface, while allowing extremely flexible dynamic
@@ -11,28 +12,22 @@ Edje supports the the creation of visual elements (borders of windows, scrollbar
 the designer to control the layout, look and feel and gui animation of any program using Edje as
 its basic GUI constructor.
 "
-HOMEPAGE="http://trac.enlightenment.org/e/wiki/Edje"
-DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
-WORK="${WORKBASE}/${MY_PNV}"
 
 LICENCES="BSD-2"
 SLOT="1"
 PLATFORMS="~amd64"
 
-MYOPTIONS="doc"
 DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.22]
-        doc? ( app-doc/doxygen )
     build+run:
         dev-lang/lua[>=5.1]
-        enlightenment-platform/ecore[>=1.0.0-beta]
-        enlightenment-platform/eet[>=1.4.0-beta]
-        enlightenment-platform/eina[>=1.0.0-beta]
-        enlightenment-platform/embryo[>=1.0.0-beta]
-        enlightenment-platform/evas[>=1.0.0-beta]
+        enlightenment-platform/ecore[>=1.0.0]
+        enlightenment-platform/eet[>=1.4.0]
+        enlightenment-platform/eina[>=1.0.0]
+        enlightenment-platform/embryo[>=1.0.0]
+        enlightenment-platform/evas[>=1.0.0]
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( '--enable-amalgamation' '--enable-edje-program-cache' )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( doc )
+DEFAULT_SRC_CONFIGURE_PARAMS+=( '--enable-amalgamation' '--enable-edje-program-cache' )
 
