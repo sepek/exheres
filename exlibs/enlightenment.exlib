@@ -1,0 +1,19 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN_HP="${MY_PN:-${PN/#e/E}}"
+MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
+
+HOMEPAGE="http://trac.enlightenment.org/e/wiki/${MY_PN_HP}"
+DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
+WORK="${WORKBASE}/${MY_PNV}"
+MYOPTIONS="doc"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        doc? ( app-doc/doxygen )
+"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=( doc )
+
