@@ -1,21 +1,18 @@
 # Copyright 2011 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
-SUMMARY="Canvas and scenegraph rendering library"
+require enlightenment
+
+SUMMARY="Canvas and scenegraph rendering library, part of Enlightenment"
 DESCRIPTION="Evas is a clean display canvas API, cross-platform, for several target display
 systems that can draw anti-aliased text, smooth super and sub-sampled scaled images, alpha-blend
 objects and much more."
-HOMEPAGE="http://trac.enlightenment.org/e/wiki/Eina"
-DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
-WORK="${WORKBASE}/${MY_PNV}"
 
 LICENCES="BSD-2"
 SLOT="1"
 PLATFORMS="~amd64"
 
 MYOPTIONS="
-    doc
     eet [[ description = [ EET image and font loader ] ]]
     examples
     fontconfig [[ description = [ Support for managing custom fonts via fontconfig ] ]]
@@ -32,11 +29,10 @@ MYOPTIONS="
 DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.20]
-        doc? ( app-doc/doxygen )
     build+run:
-        enlightenment-platform/eina[>=1.0.0-beta]
+        enlightenment-platform/eina[>=1.0.0]
         media-libs/freetype:2
-        eet? ( enlightenment-platform/eet[>=1.4.0-beta] )
+        eet? ( enlightenment-platform/eet[>=1.4.0] )
         fontconfig? ( media-libs/fontconfig )
         fribidi? ( dev-libs/fribidi[>=0.19.2] )
         gif? ( media-libs/giflib )
@@ -52,7 +48,7 @@ DEPENDENCIES="
              x11-utils/xcb-util[>=0.2.1] )
 "
 
-DEFAULT_SRC_CONFIGURE_PARAMS=(
+DEFAULT_SRC_CONFIGURE_PARAMS+=(
     '--enable-async-events'
     '--enable-async-preload'
     '--enable-async-render'
@@ -103,8 +99,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--disable-software-gdi'
 )
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    'doc'
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'eet image-loader-eet' 'eet font-loader-eet'
     'examples install-examples'
     'fontconfig'
