@@ -1,0 +1,29 @@
+From f8d1cfad08b99be2821eec34f24f6660afa14f04 Mon Sep 17 00:00:00 2001
+From: Paul Seidler <bl4sph3my@online.de>
+Date: Thu, 10 Feb 2011 00:10:41 +0000
+Subject: [PATCH] add missing efreet_suite.h for tests
+
+---
+ src/tests/efreet_suite.h |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
+ create mode 100644 src/tests/efreet_suite.h
+
+diff --git a/src/tests/efreet_suite.h b/src/tests/efreet_suite.h
+new file mode 100644
+index 0000000..bfb47f9
+--- /dev/null
++++ b/src/tests/efreet_suite.h
+@@ -0,0 +1,10 @@
++#ifndef _EFREET_SUITE_H
++#define _EFREET_SUITE_H
++
++#include <check.h>
++
++void efreet_test_efreet(TCase *tc);
++void efreet_test_efreet_cache(TCase *tc);
++
++
++#endif /* _EFREET_SUITE_H */
+-- 
+1.7.4
+

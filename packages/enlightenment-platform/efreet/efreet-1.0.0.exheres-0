@@ -1,0 +1,26 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment
+
+SUMMARY="Library for handling freedesktop.org standards, part of Enlightenment"
+
+LICENCES="BSD-2"
+SLOT="1"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.22]
+    build+run:
+        enlightenment-platform/ecore[>=1.0.0]
+        enlightenment-platform/eet[>=1.4.0]
+        enlightenment-platform/eina[>=1.0.0]
+    test:
+        dev-libs/check[>=0.9.4]
+"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/efreet_suite.patch" )
+DEFAULT_SRC_CONFIGURE_PARAMS+=( '--enable-tests' )
+
