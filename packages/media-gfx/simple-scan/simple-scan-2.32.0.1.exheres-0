@@ -1,7 +1,7 @@
 # Copyright 2010 Hong Hao <oahong@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require launchpad gnome-2
+require launchpad gconf gtk-icon-cache
 
 SUMMARY="Simple Scanning Utility for GNOME"
 
@@ -30,4 +30,14 @@ DEPENDENCIES="
 "
 
 BUGS_TO="oahong@gmail.com"
+
+pkg_postinst() {
+    gconf_pkg_postinst
+    gtk_icon_cache_exlib_update_theme_cache
+}
+
+pkg_postrm() {
+    gconf_pkg_postrm
+    gtk_icon_cache_exlib_update_theme_cache
+}
 
