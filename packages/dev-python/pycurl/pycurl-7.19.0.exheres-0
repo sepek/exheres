@@ -8,6 +8,7 @@ DESCRIPTION="PycURL is a Python interface to libcurl. PycURL can be used to fetc
 by a URL from a Python program, similar to the urllib Python module. PycURL is mature, very fast,
 and supports a lot of features."
 DOWNLOADS="mirror://sourceforge/${PN}/${PNV}.tar.gz"
+LICENCES="LGPL-2.1 MIT"
 
 UPSTREAM_CHANGELOG="${HOMEPAGE}/ChangeLog [[ lang = en ]]"
 UPSTREAM_DOCUMENTATION="
@@ -17,7 +18,7 @@ UPSTREAM_DOCUMENTATION="
 ]]"
 
 SLOT="0"
-PLATFORMS="~amd64"
+PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
 DEPENDENCIES="build+run: net-misc/curl[>=7.19.0]"
