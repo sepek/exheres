@@ -86,7 +86,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS+=(
     '--disable-convert-yuv'
 
     # just use xrender backends
-    '--disable-simple-x11'
     '--disable-software-xlib'
     '--disable-software-xcb'
 
@@ -110,6 +109,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'png image-loader-png'
     'svg image-loader-svg'
     'tiff image-loader-tiff'
+    'X simple-x11'
     'X xrender-xcb'
 )
 
