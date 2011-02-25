@@ -1,6 +1,8 @@
 # Copyright 2010 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
+require multilib
+
 export_exlib_phases src_configure
 
 HOMEPAGE="http://${PN}.geexbox.org/"
@@ -17,7 +19,7 @@ geexbox_src_configure() {
     edo ./configure \
         --prefix=/usr \
         --docdir=/usr/share/doc/"${PNVR}" \
-        --libdir=/usr/"${getlibdir}" \
+        --libdir=/usr/"$(get_libdir)" \
         $(option_enable doc) \
         "${GEEXBOX_SRC_CONFIGURE_PARAMS[@]}" \
         $(for s in "${GEEXBOX_SRC_CONFIGURE_OPTION_ENABLES[@]}" ; do \
