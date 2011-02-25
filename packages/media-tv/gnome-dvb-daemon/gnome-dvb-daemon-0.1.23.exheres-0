@@ -33,7 +33,7 @@ DEPENDENCIES="
         media-libs/gstreamer:0.10[>=0.10.29]
         media-plugins/gst-plugins-bad[>=0.10.13]
         media-plugins/gst-plugins-good:0.10[>=0.10.14]
-        media-plugins/gst-rtsp:0.10[>=0.10.7]
+        media-libs/gst-rtsp-server:0.10[>=0.10.7]
         sys-fs/udev
         totem? ( gnome-desktop/totem[python] )
     recommendation:
