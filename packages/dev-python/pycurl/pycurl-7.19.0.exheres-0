@@ -21,5 +21,8 @@ SLOT="0"
 PLATFORMS="~amd64 ~x86"
 MYOPTIONS=""
 
-DEPENDENCIES="build+run: net-misc/curl[>=7.19.0]"
+DEPENDENCIES="
+    build+run:
+        net-misc/curl[>=7.19.0]
+"
 
