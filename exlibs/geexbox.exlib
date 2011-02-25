@@ -22,9 +22,6 @@ geexbox_src_configure() {
         "${GEEXBOX_SRC_CONFIGURE_PARAMS[@]}" \
         $(for s in "${GEEXBOX_SRC_CONFIGURE_OPTION_ENABLES[@]}" ; do \
             option_enable ${s} ; \
-        done ) \
-        $(for s in "${GEEXBOX_SRC_CONFIGURE_OPTION_WITHS[@]}" ; do \
-            option_with ${s} ; \
         done )
 }
 
