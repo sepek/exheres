@@ -60,7 +60,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS+=(
     # experimental/not ready:
     '--disable-metric-cache'
     '--disable-word-cache'
-    '--disable-xrender-x11'
 
     # TODO/don't need it:
     '--disable-directfb'
@@ -85,10 +84,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS+=(
     '--disable-static-software-8'
     '--disable-convert-yuv'
 
-    # just use xrender backends
-    '--disable-software-xlib'
-    '--disable-software-xcb'
-
     # bad systems!
     '--disable-direct3d'
     '--disable-quartz'
@@ -110,6 +105,9 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'svg image-loader-svg'
     'tiff image-loader-tiff'
     'X simple-x11'
+    'X software-xcb'
+    'X software-xlib'
+    'X xrender-x11'
     'X xrender-xcb'
 )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
