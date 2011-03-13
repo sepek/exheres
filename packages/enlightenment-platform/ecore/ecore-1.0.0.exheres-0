@@ -20,22 +20,40 @@ MYOPTIONS="
     curl
     evas [[ description = [ Enable the ecore_evas module for rendering ] ]]
     glib [[ description = [ Integrate glib ] ]]
+    gnutls [[ description = [ Use GnuTLS instead of OpenSSL ] ]]
     opengl [[ requires = [ evas X ] ]]
     X [[ requires = [ evas ] ]]
+    xinerama
 "
 
 DEPENDENCIES="
+    build:
+        X? (
+            x11-proto/kbproto
+            x11-proto/printproto
+        )
+        xinerama? ( x11-proto/xineramaproto )
     build+run:
         enlightenment-platform/eina[>=1.0.0]
         dev-libs/openssl
         curl? ( net-misc/curl )
         evas? ( enlightenment-platform/evas[>=1.0.0][X?][opengl?] )
         glib? ( dev-libs/glib:2 )
+        gnutls? ( dev-libs/gnutls )
         X? ( x11-libs/libX11
              x11-libs/libxcb
+             x11-libs/libXcomposite
              x11-libs/libXcursor
+             x11-libs/libXdamage
              x11-libs/libXext
-             x11-libs/libXi )
+             x11-libs/libXfixes
+             x11-libs/libXi
+             x11-libs/libXp
+             x11-libs/libXrandr
+             x11-libs/libXrender
+             x11-libs/libXScrnSaver
+             x11-libs/libXtst )
+        xinerama? ( x11-libs/libXinerama )
 "
 #    test:
 #        dev-libs/check[>=0.9.4]
@@ -45,24 +63,22 @@ RESTRICT="test"
 
 DEFAULT_SRC_CONFIGURE_PARAMS+=(
     '--enable-ecore-con'
-    '--enable-ecore-evas-software-buffer'
     '--enable-ecore-ipc'
     '--enable-ecore-file'
     '--enable-ecore-imf'
     '--enable-ecore-input'
     '--enable-ecore-x'
     '--enable-inotify'
-    '--enable-openssl'
     '--enable-posix-threads'
 
     # disabled in evas:
     '--disable-ecore-evas-software-8-x11'
     '--disable-ecore-evas-software-16-x11'
-    '--disable-ecore-evas-software-x11'
-    '--disable-ecore-evas-xrender-x11'
 
     '--disable-glib-integration-always' # conflict with enable-g-main-loop 
     '--disable-tests' # need X
+    '--disable-ecore-x-xcb'
+    '--disable-ecore-evas-xrender-xcb'
 
     # TODO/don't need it:
     '--disable-cares'
@@ -73,7 +89,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS+=(
     '--disable-ecore-evas-opengl-sdl'
     '--disable-ecore-evas-opengl-sdl'
     '--disable-ecore-evas-opengl-glew'
-    '--disable-gnutls'
     '--disable-tslib'
 
     # bad systems:
@@ -94,11 +109,17 @@ DEFAULT_SRC_CONFIGURE_PARAMS+=(
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'curl'
     'evas ecore-evas'
+    'evas ecore-evas-software-buffer'
+    'evas ecore-evas-software-x11'
+    'evas ecore-evas-xrender-x11'
     'evas ecore-imf-evas'
     'evas ecore-input-evas'
     'glib'
     'glib g-main-loop'
+    'gnutls gnutls'
+    '!gnutls openssl'
     'opengl ecore-evas-opengl-x11'
+    'X ecore-x'
     'X ecore-x-composite'
     'X ecore-x-cursor'
     'X ecore-x-damage'
@@ -109,14 +130,16 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'X ecore-x-screensaver'
     'X ecore-x-shape'
     'X ecore-x-sync'
-    'X ecore-x-xcb'
     'X ecore-x-xfixes'
-    'X ecore-x-xinerama'
     'X ecore-x-xprint'
     'X ecore-x-xtest'
-    'X ecore-evas-xrender-xcb'
     'X simple-x11'
     'X xim'
+    'xinerama ecore-x-xinerama'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS+=(
+    'X x'
 )
 
 src_install() {
