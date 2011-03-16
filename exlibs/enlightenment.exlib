@@ -1,16 +1,18 @@
 # Copyright 2011 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-MY_PN_HP="${MY_PN:-${PN/#e/E}}"
-MY_PNV="${PN}-${MY_PV:-${PV/-beta/.beta}}"
+myexparam hp_pn="${MY_PN:-${PN/#e/E}}"
+myexparam pn="${MY_PN:-${PN}}"
+myexparam pv=${MY_PV:-${PV}}
+myexparam pnv=${MY_PNV:-$(exparam pn)-$(exparam pv)}
 
-HOMEPAGE="http://trac.enlightenment.org/e/wiki/${MY_PN_HP}"
-DOWNLOADS="http://download.enlightenment.org/releases/${MY_PNV}.tar.gz"
-WORK="${WORKBASE}/${MY_PNV}"
+HOMEPAGE="http://trac.enlightenment.org/e/wiki/$(exparam hp_pn)"
+DOWNLOADS="http://download.enlightenment.org/releases/$(exparam pnv).tar.gz"
+WORK="${WORKBASE}/$(exparam pnv)"
 
 if [[ ${PV} == scm ]]; then
     SCM_REPOSITORY="http://svn.enlightenment.org/svn/e/"
-    SCM_SUBPATH="${PN}"
+    SCM_SUBPATH="$(exparam pn)"
     DOWNLOADS=""
     require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
     AT_M4DIR=( 'm4' )
