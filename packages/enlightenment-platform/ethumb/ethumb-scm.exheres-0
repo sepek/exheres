@@ -1,0 +1,31 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment
+
+SUMMARY="A thumbnail creator for Enlightenment"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="exif"
+
+DEPENDENCIES="
+    build:
+    build+run:
+        enlightenment-platform/e_dbus[>=1.0.0]
+        enlightenment-platform/ecore[>=1.0.0][evas]
+        enlightenment-platform/edje[>=1.0.0]
+        enlightenment-platform/eina[>=1.0.0]
+        enlightenment-platform/evas[>=1.0.0]
+        exif? ( media-libs/libexif )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    # missing dependencies
+    '--disable-emotion'
+    '--disable-epdf'
+    '--enable-ethumbd'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'exif libexif' )
+
