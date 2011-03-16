@@ -3,11 +3,21 @@
 
 myexparam hp_pn="${MY_PN:-${PN/#e/E}}"
 myexparam pn="${MY_PN:-${PN}}"
-myexparam pv=${MY_PV:-${PV}}
-myexparam pnv=${MY_PNV:-$(exparam pn)-$(exparam pv)}
+myexparam pv="${MY_PV:-${PV}}"
+myexparam pnv="${MY_PNV:-$(exparam pn)-$(exparam pv)}"
+myexparam -b snapshot=false
+myexparam snapdate=""
 
 HOMEPAGE="http://trac.enlightenment.org/e/wiki/$(exparam hp_pn)"
-DOWNLOADS="http://download.enlightenment.org/releases/$(exparam pnv).tar.gz"
+
+if exparam -b snapshot; then
+    BASE_DOWNLOADS="http://download.enlightenment.org/snapshots/$(exparam snapdate)/"
+else
+    BASE_DOWNLOADS="http://download.enlightenment.org/releases/"
+fi
+
+DOWNLOADS="${BASE_DOWNLOADS}/$(exparam pnv).tar.gz"
+
 WORK="${WORKBASE}/$(exparam pnv)"
 
 if [[ ${PV} == scm ]]; then
