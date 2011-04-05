@@ -3,6 +3,7 @@
 
 myexparam hp_pn="${MY_PN:-${PN/#e/E}}"
 myexparam pn="${MY_PN:-${PN}}"
+myexparam scm_pn="${MY_PN:-$(exparam pn)}"
 myexparam pv="${MY_PV:-${PV}}"
 myexparam pnv="${MY_PNV:-$(exparam pn)-$(exparam pv)}"
 myexparam -b snapshot=false
@@ -22,7 +23,7 @@ WORK="${WORKBASE}/$(exparam pnv)"
 
 if [[ ${PV} == scm ]]; then
     SCM_REPOSITORY="http://svn.enlightenment.org/svn/e/"
-    SCM_SUBPATH="$(exparam pn)"
+    SCM_SUBPATH="$(exparam scm_pn)"
     DOWNLOADS=""
     require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
     AT_M4DIR=( 'm4' )
