@@ -1,0 +1,22 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment
+
+SUMMARY="Device abstraction library, part of Enlightenment"
+DESCRIPTION="Eeze is a library for manipulating devices through udev with a simple and fast api. It
+interfaces directly with libudev, avoiding such middleman daemons as udisks/upower or hal, to
+immediately gather device information the instant it becomes known to the system."
+
+LICENCES="BSD-2"
+SLOT="1"
+PLATFORMS="~amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        enlightenment-platform/ecore[>=1.0.0]
+        enlightenment-platform/eina[>=1.0.0]
+        sys-fs/udev[>=143]
+"
+
