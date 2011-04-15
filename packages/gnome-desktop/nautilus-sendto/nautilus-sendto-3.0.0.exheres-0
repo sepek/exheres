@@ -1,0 +1,48 @@
+# Copyright 2010 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require gnome.org gsettings
+
+SUMMARY="Extension for nautilus to send files easily"
+HOMEPAGE="http://www.gnome.org/"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="gtk-doc
+    eds [[ description = [ Ability to send files with Evolution ] ]]
+    pidgin [[ description = [ Ability to send files with Pidgin  ] ]]
+    upnp [[ description = [ Ability to send files to UPnP based network devices ] 
+            note = [ Need testing ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.19]
+        dev-util/intltool[>=0.40.1]
+        sys-devel/gettext
+        gtk-doc? ( dev-doc/gtk-doc[>=1.4] )
+    build+run:
+        dev-libs/glib:2[>=2.25.9]
+        gnome-desktop/nautilus[>=2.31.3]
+        x11-libs/gtk+:3[>=2.90.3]
+        eds? ( gnome-desktop/evolution-data-server[>=1.5.3] )
+        pidgin? ( dev-libs/dbus-glib[>=0.60] )
+        upnp? ( net-libs/gupnp[>=0.1.3] )
+    run:
+        eds? ( mail-client/evolution )
+        pidgin? ( net-im/pidgin )
+"
+
+src_configure() {
+    # TODO: gajim, nautilus-burn (not in repos)
+    local PLUGINS="removable-devices"
+    option eds && PLUGINS+=",evolution"
+    option pidgin && PLUGINS+=",pidgin"
+    option upnp && PLUGINS+=",upnp"
+
+    econf \
+        $(option_enable gtk-doc) \
+        --with-plugins=${PLUGINS}
+}
+
