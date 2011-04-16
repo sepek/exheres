@@ -22,6 +22,6 @@ DEPENDENCIES="
 
 src_prepare() {
     default
-    edo sed -ie "s:prefix)/lib:prefix)/$(get_libdir):" "${WORK}/Make.rules"
+    edo sed -ie "s:prefix)/lib:prefix)/${LIBDIR}:" "${WORK}/Make.rules"
 }
 

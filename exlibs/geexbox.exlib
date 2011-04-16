@@ -19,7 +19,7 @@ geexbox_src_configure() {
     edo ./configure \
         --prefix=/usr \
         --docdir=/usr/share/doc/"${PNVR}" \
-        --libdir=/usr/"$(get_libdir)" \
+        --libdir=/usr/"${LIBDIR}" \
         $(option_enable doc) \
         "${GEEXBOX_SRC_CONFIGURE_PARAMS[@]}" \
         $(for s in "${GEEXBOX_SRC_CONFIGURE_OPTION_ENABLES[@]}" ; do \
