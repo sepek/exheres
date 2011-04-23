@@ -10,7 +10,7 @@ compiler, embryo_cc. It is mostly a cleaned up and smaller version of the origin
 machine. The compiler is mostly untouched.
 "
 
-LICENCES="BSD-2 ZLIB"
+LICENCES="|| ( BSD-2 ZLIB )"
 SLOT="1"
 PLATFORMS="~amd64"
 

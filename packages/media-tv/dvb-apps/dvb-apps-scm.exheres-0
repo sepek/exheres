@@ -10,7 +10,7 @@ SCM_REPOSITORY="http://linuxtv.org/hg/dvb-apps"
 
 require scm-hg
 
-LICENCES="GPL-2 LGPL-2.1"
+LICENCES="|| ( GPL-2 LGPL-2.1 )"
 SLOT="0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
