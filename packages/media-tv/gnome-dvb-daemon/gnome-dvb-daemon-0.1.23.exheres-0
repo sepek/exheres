@@ -10,8 +10,7 @@ HOMEPAGE="http://live.gnome.org/DVBDaemon"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="totem
-
+MYOPTIONS="
     totem [[ description = [ Install plugin to watch TV with Totem ] ]]
 "
 
