@@ -16,11 +16,10 @@ DEPENDENCIES="
     build:
         dev-util/pkg-config[>=0.8]
         gtk-doc? ( dev-doc/gtk-doc[>=1.3] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.3]
-                                 media-libs/gstreamer:0.10[gobject-introspection] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=0.6.3] )
     build+run:
         dev-libs/glib[>=2.10.0]
-        media-libs/gstreamer:0.10[>=0.10.29]
+        media-libs/gstreamer:0.10[>=0.10.29][gobject-introspection?]
         vala? ( dev-lang/vala )
 "
 # dev-lang/python[>=2.3]
