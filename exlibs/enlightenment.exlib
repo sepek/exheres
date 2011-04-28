@@ -21,7 +21,7 @@ DOWNLOADS="${BASE_DOWNLOADS}/$(exparam pnv).tar.gz"
 
 WORK="${WORKBASE}/$(exparam pnv)"
 
-if [[ ${PV} == scm ]]; then
+if ever is_scm; then
     SCM_REPOSITORY="http://svn.enlightenment.org/svn/e/"
     SCM_SUBPATH="$(exparam scm_pn)"
     DOWNLOADS=""
