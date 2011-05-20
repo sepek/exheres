@@ -1,0 +1,63 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require gnu
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Unique multiplayer wargame"
+DESCRIPTION="
+Liquid War 6 is a unique multiplayer wargame. Your army is a blob of liquid and you have to try and
+eat your opponents. Rules are very simple yet original, they have been invented by Thomas Colcombet.
+It is possible to play alone against the computer but the game is really designed to be played with
+friends, on a single computer, on a LAN, or on Internet.
+"
+DOWNLOADS="mirror://savannah/${PN}/${PV/_}/${PNV/_}.tar.gz"
+WORK="${WORKBASE}/${PNV/_}"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="amd64"
+MYOPTIONS="
+    console [[ description = [ Interactive script shell ] ]]
+    gtk
+    http [[ description = [ HTTP support for multiplayer (e.g. to use a proxy) ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        sys-devel/gettext[>=0.17]
+    build+run:
+        dev-db/sqlite:3
+        dev-lang/guile:1.8
+        dev-libs/expat
+        dev-libs/gmp
+        media-libs/jpeg
+        media-libs/libpng[>=1.2]
+        media-libs/SDL[X]
+        media-libs/SDL_image
+        media-libs/SDL_mixer[ogg]
+        media-libs/SDL_ttf
+        sys-libs/zlib
+        x11-dri/mesa
+        console? ( sys-libs/ncurses
+                   sys-libs/readline )
+        gtk? ( x11-libs/gtk+:2 )
+        http? ( net-misc/curl )
+"
+
+AT_M4DIR=( 'm4' )
+
+# require user input
+RESTRICT="test"
+
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix_configure_typo.patch" )
+# TODO: mod-csound missing dep
+# mod-gl is actually the only backend and a must have, also mod-ogg
+DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-mod-sound' '--enable-mod-gl' '--enable-mod-ogg' )
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    'console'
+    'gtk'
+    'http mod-http'
+)
+
