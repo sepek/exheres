@@ -19,7 +19,7 @@ MYOPTIONS="gnutls [[ description = [ Use gnutls instead of OpenSSL ] ]]"
 
 DEPENDENCIES="
     build+run:
-        enlightenment-platform/eina[>=1.0.0]
+        enlightenment-platform/eina[>=1.0.1]
         media-libs/jpeg
         sys-libs/zlib
         gnutls? ( dev-libs/gnutls[>=1.7.6] )
