@@ -1,0 +1,143 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment
+
+SUMMARY="Canvas and scenegraph rendering library, part of Enlightenment"
+DESCRIPTION="Evas is a clean display canvas API, cross-platform, for several target display
+systems that can draw anti-aliased text, smooth super and sub-sampled scaled images, alpha-blend
+objects and much more."
+
+LICENCES="BSD-2"
+SLOT="1"
+PLATFORMS="~amd64"
+
+MYOPTIONS="
+    eet [[ description = [ EET image and font loader ] ]]
+    examples
+    fontconfig [[ description = [ Support for managing custom fonts via fontconfig ] ]]
+    fribidi [[ description = [ Use the FriBiDi libs for bidirectional unicode ] ]]
+    gif
+    harfbuzz [[ description = [ Shape text with the HarfBuzz library ] note = [ untested ] ]]
+    jpeg
+    linebreak [[ description = [ Break lines by the Unicode Standard ] ]]
+    opengl [[ description = [ OpenGL X11 rendering backend ] ]]
+    pixman [[ description = [ Use pixman for rendering ] ]]
+    png
+    svg [[ requires = pixman ]]
+    tiff
+    X [[ description = [ Enable xcb render backend ] requires = pixman ]]
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.20]
+    build+run:
+        enlightenment-platform/eina[>=1.0.0]
+        media-libs/freetype:2
+        eet? ( enlightenment-platform/eet[>=1.4.0] )
+        fontconfig? ( media-libs/fontconfig )
+        fribidi? ( dev-libs/fribidi[>=0.19.2] )
+        gif? ( media-libs/giflib )
+        harfbuzz? ( media-libs/harfbuzz[>=0.5.0] )
+        jpeg? ( media-libs/jpeg )
+        linebreak? ( dev-libs/liblinebreak )
+        opengl? ( x11-dri/mesa )
+        pixman? ( x11-libs/pixman:1 )
+        png? ( media-libs/libpng )
+        svg? ( gnome-desktop/librsvg:2[>=2.14.0] )
+        tiff? ( media-libs/tiff )
+        X? ( x11-libs/libxcb
+             x11-libs/libXext
+             x11-libs/libXrender
+             x11-utils/xcb-util[>=0.2.1] )
+"
+
+DEFAULT_SRC_CONFIGURE_PARAMS+=(
+    '--enable-async-events'
+    '--enable-async-preload'
+    '--enable-async-render'
+    '--enable-buffer'
+    '--enable-cpu-c'
+    '--enable-pipe-render'
+    '--enable-pthreads'
+
+    # image loaders
+    '--enable-image-loader-ico'
+    '--enable-image-loader-generic'
+    '--enable-image-loader-psd'
+    '--enable-image-loader-wbmp'
+
+    # CPU features
+    '--enable-cpu-mmx'
+    '--enable-cpu-sse'
+    '--disable-cpu-altivec'
+    '--disable-cpu-neon'
+
+    # experimental/not ready:
+    '--disable-metric-cache'
+    '--disable-word-cache'
+
+    # TODO/don't need it:
+    '--disable-directfb'
+    '--disable-fb'
+    '--disable-gl-flavor-gles'
+    '--disable-gl-sdl'
+    '--disable-image-loader-bmp'
+    '--disable-image-loader-edb'
+    '--disable-image-loader-pmaps'
+    '--disable-image-loader-tga'
+    '--disable-image-loader-xpm'
+    '--disable-line-dither-mask'
+    '--disable-no-dither-mask'
+    '--disable-sdl-primitive'
+    '--disable-small-dither-mask'
+    '--disable-software-8-x11'
+    '--disable-software-16-x11'
+    '--disable-software-sdl'
+    '--disable-static-software-generic'
+    '--disable-static-software-16'
+    '--disable-static-software-8'
+    '--disable-convert-yuv'
+
+    # bad systems!
+    '--disable-direct3d'
+    '--disable-software-16-ddraw'
+    '--disable-software-16-wince'
+    '--disable-software-ddraw'
+    '--disable-software-gdi'
+)
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
+    'eet image-loader-eet' 'eet font-loader-eet'
+    'examples install-examples'
+    'fontconfig'
+    'fribidi'
+    'gif image-loader-gif'
+    'harfbuzz'
+    'jpeg image-loader-jpeg'
+    'linebreak liblinebreak'
+    'opengl gl-x11'
+    'pixman'
+    'png image-loader-png'
+    'svg image-loader-svg'
+    'tiff image-loader-tiff'
+    'X simple-x11'
+    'X software-xcb'
+    'X software-xlib'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS+=(
+    'X x'
+)
+
+src_prepare() {
+    edo touch README
+    edo touch ABOUT-NLS
+    enlightenment_src_prepare
+}
+
+src_install() {
+    default
+    option '!examples' && edo rmdir "${IMAGE}"/usr/share/evas/{examples,}
+}
+
