@@ -7,20 +7,23 @@ SUMMARY="Widget Set for enlightenment"
 LICENCES="LGPL-2.1"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="X
+MYOPTIONS="dbus X
     desktop [[ description = [ Support Freedesktop.org standards ] ]]
     thumbnail [[ description = [ Ability to create thumbnails with ethumb ] ]]
 "
 
 DEPENDENCIES="
+    build:
+        sys-devel/gettext[>=0.12.1]
     build+run:
-        enlightenment-platform/edje[>=1.0.0]
+        enlightenment-platform/edje[>=1.0.999]
         enlightenment-platform/eet[>=1.4.0]
-        enlightenment-platform/eina[>=1.0.0]
-        enlightenment-platform/evas[>=1.0.0]
+        enlightenment-platform/eina[>=1.0.999]
+        enlightenment-platform/evas[>=1.0.999]
         enlightenment-platform/ecore[>=1.0.0][evas]
         desktop? ( enlightenment-platform/efreet[>=1.0.0] )
         thumbnail? ( enlightenment-platform/ethumb )
+        dbus? ( enlightenment-platform/e_dbus[>=1.0.0] )
         X? ( enlightenment-platform/ecore[X] )
 "
 
@@ -28,7 +31,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-quick-launch'
 
     # missing dependencies
-    '--disable-edbus' # needs ehal
     '--disable-eweather' # needs eweather
 
     # TODO/don't need it
@@ -40,9 +42,16 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     # bad systems!
     '--disable-win32-threads'
 )
+
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
+    'dbus edbus'
     'desktop efreet'
     'thumbnail ethumb'
     'X ecore-x'
 )
+
+src_prepare() {
+    edo autopoint -f
+    enlightenment_src_prepare
+}
 
