@@ -19,6 +19,7 @@ DEPENDENCIES="
         enlightenment-platform/edje[>=1.0.999]
         enlightenment-platform/eet[>=1.4.0]
         enlightenment-platform/eina[>=1.0.999]
+        enlightenment-platform/eio
         enlightenment-platform/evas[>=1.0.999]
         enlightenment-platform/ecore[>=1.0.0][evas]
         desktop? ( enlightenment-platform/efreet[>=1.0.0] )
