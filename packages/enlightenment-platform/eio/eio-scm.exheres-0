@@ -1,0 +1,25 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment
+
+SUMMARY="Provide efficient Input/Output"
+DESCRIPTION="
+This library is intended to provide non blocking IO by using thread for all
+operation that may block. It depends only on eina and ecore right now. It
+should integrate all the features/functions of Ecore_File that could block.
+"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.22]
+    build+run:
+        enlightenment-platform/ecore[>=1.0.0]
+        enlightenment-platform/eina[>=1.0.0]
+"
+
