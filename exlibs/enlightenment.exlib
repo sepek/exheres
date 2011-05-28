@@ -27,6 +27,12 @@ if ever is_scm; then
     DOWNLOADS=""
     require scm-svn autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
     AT_M4DIR=( 'm4' )
+
+    export_exlib_phases src_prepare
+
+    enlightenment_src_prepare() {
+        autotools_src_prepare
+    }
 fi
 
 MYOPTIONS="doc"
