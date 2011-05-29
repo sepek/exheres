@@ -1,0 +1,21 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment [ scm_pn="PROTO/${PN}" ]
+
+SUMMARY="Access to weather dada"
+HOMEPAGE="http://www.enlightenment.org/"
+
+LICENCES="LGPL-2.1"
+SLOT="0"
+PLATFORMS="amd64"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build+run:
+        enlightenment-platform/ecore[evas]
+        enlightenment-platform/edje[>=0.5]
+        enlightenment-platform/eina
+        enlightenment-platform/evas
+"
+
