@@ -10,6 +10,7 @@ PLATFORMS="~amd64"
 MYOPTIONS="dbus X
     desktop [[ description = [ Support Freedesktop.org standards ] ]]
     thumbnail [[ description = [ Ability to create thumbnails with ethumb ] ]]
+    weather [[ description = [ Ability to access weather data on the internet ] ]]
 "
 
 DEPENDENCIES="
@@ -25,14 +26,12 @@ DEPENDENCIES="
         desktop? ( enlightenment-platform/efreet[>=1.0.0] )
         thumbnail? ( enlightenment-platform/ethumb )
         dbus? ( enlightenment-platform/e_dbus[>=1.0.0] )
+        weather? ( enlightenment-platform/libeweather )
         X? ( enlightenment-platform/ecore[X] )
 "
 
 DEFAULT_SRC_CONFIGURE_PARAMS=(
     '--enable-quick-launch'
-
-    # missing dependencies
-    '--disable-eweather' # needs eweather
 
     # TODO/don't need it
     '--disable-ecore-fb'
@@ -48,6 +47,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'dbus edbus'
     'desktop efreet'
     'thumbnail ethumb'
+    'weather eweather'
     'X ecore-x'
 )
 
