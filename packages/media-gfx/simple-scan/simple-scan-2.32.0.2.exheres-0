@@ -29,8 +29,6 @@ DEPENDENCIES="
         x11-apps/xdg-utils
 "
 
-BUGS_TO="oahong@gmail.com"
-
 pkg_postinst() {
     gconf_pkg_postinst
     gtk_icon_cache_exlib_update_theme_cache
