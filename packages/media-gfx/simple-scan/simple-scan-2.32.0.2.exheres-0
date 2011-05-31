@@ -1,0 +1,41 @@
+# Copyright 2010 Hong Hao <oahong@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require launchpad gconf gtk-icon-cache
+
+SUMMARY="Simple Scanning Utility for GNOME"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        sys-devel/gettext
+    build+run:
+        dev-libs/dbus-glib:1
+        dev-libs/glib:2
+        gnome-platform/GConf:2
+        media-gfx/sane-backends
+        media-libs/jpeg
+        sys-fs/udev[glib]
+        sys-libs/zlib
+        x11-libs/cairo
+        x11-libs/gtk+:2[>=2.18.0]
+    run:
+        gnome-desktop/gnome-icon-theme
+        x11-apps/xdg-utils
+"
+
+pkg_postinst() {
+    gconf_pkg_postinst
+    gtk_icon_cache_exlib_update_theme_cache
+}
+
+pkg_postrm() {
+    gconf_pkg_postrm
+    gtk_icon_cache_exlib_update_theme_cache
+}
+
