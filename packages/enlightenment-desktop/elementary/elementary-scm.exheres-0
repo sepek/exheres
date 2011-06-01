@@ -1,7 +1,7 @@
 # Copyright 2010 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-require enlightenment [ snapshot=true snapdate=2010-12-03 ]
+require enlightenment
 
 SUMMARY="Widget Set for enlightenment"
 LICENCES="LGPL-2.1"
