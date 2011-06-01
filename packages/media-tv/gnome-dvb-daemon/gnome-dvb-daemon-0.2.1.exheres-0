@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnome.org gtk-icon-cache
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Daemon to setup your DVB devices, record and watch TV shows and browse EPG"
 HOMEPAGE="http://live.gnome.org/DVBDaemon"
@@ -16,19 +15,17 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-lang/vala:0.12
+        dev-lang/vala:0.12[>=0.12]
         dev-util/pkg-config
         sys-devel/gettext[>=0.18.1]
     build+run:
         base/libgee:1.0[>=0.5.0]
         dev-db/sqlite:3[>=3.4]
+        dev-libs/glib[>=2.28.5]
         dev-lang/python:=[>=2.5]
-        dev-libs/dbus-glib:1[>=0.74]
-        dev-libs/glib[>=2.16]
-        dev-python/dbus-python
         dev-python/gst-python
-        gnome-bindings/pygobject:2[>=2.15.3]
-        gnome-bindings/pygtk:2[>=2.10]
+        gnome-bindings/pygobject:2[>=2.28.4]
+        gnome-desktop/gobject-introspection
         media-libs/gstreamer:0.10[>=0.10.29]
         media-plugins/gst-plugins-bad[>=0.10.13]
         media-plugins/gst-plugins-good:0.10[>=0.10.14]
@@ -39,20 +36,6 @@ DEPENDENCIES="
         media-tv/dvb-apps [[ description = [ Provide needed initial scan files ] ]]
 "
 
-AT_M4DIR=( 'm4' )
-
 DEFAULT_SRC_CONFIGURE_PARAMS=( 'VALAC=/usr/bin/valac-0.12' )
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'totem totem-plugin' )
-
-src_prepare() {
-    default
-
-    # the plugin isn't builtin
-    edo sed -ie 's:Builtin=true:Builtin=false:' "${WORK}"/client/totem-plugin/dvb-daemon.totem-plugin.in
-
-    # fix --disable-totem-plugin
-    edo sed -i -e 's/\(enable_totem=\)"yes"/\1$enableval/' configure.ac
-
-    eautoreconf
-}
 
