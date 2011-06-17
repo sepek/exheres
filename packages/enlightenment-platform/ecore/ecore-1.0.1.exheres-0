@@ -78,7 +78,6 @@ DEFAULT_SRC_CONFIGURE_PARAMS+=(
     '--disable-glib-integration-always' # conflict with enable-g-main-loop 
     '--disable-tests' # need X
     '--disable-ecore-x-xcb'
-    '--disable-ecore-evas-xrender-xcb'
 
     # TODO/don't need it:
     '--disable-cares'
@@ -112,6 +111,7 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES+=(
     'evas ecore-evas-software-buffer'
     'evas ecore-evas-software-x11'
     'evas ecore-evas-xrender-x11'
+    'evas ecore-evas-xrender-xcb'
     'evas ecore-imf-evas'
     'evas ecore-input-evas'
     'glib'
