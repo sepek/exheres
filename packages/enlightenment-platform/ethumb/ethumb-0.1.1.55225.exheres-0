@@ -16,7 +16,7 @@ DEPENDENCIES="
         enlightenment-platform/ecore[>=1.0.0][evas]
         enlightenment-platform/edje[>=1.0.0]
         enlightenment-platform/eina[>=1.0.0]
-        enlightenment-platform/evas[>=1.0.0]
+        enlightenment-platform/evas[>=1.0.0][jpeg]
         exif? ( media-libs/libexif )
 "
 
