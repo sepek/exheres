@@ -13,7 +13,7 @@ The API is C based and means to be used from any language and be easier to maint
 HOMEPAGE="http://libopenraw.freedesktop.org/wiki/Exempi"
 DOWNLOADS="http://libopenraw.freedesktop.org/download/${PNV}.tar.gz"
 
-LICENCES="BSD"
+LICENCES="BSD-3"
 SLOT="2.0"
 PLATFORMS="~amd64"
 MYOPTIONS=""
