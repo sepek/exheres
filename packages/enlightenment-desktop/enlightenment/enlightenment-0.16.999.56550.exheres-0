@@ -1,0 +1,76 @@
+# Copyright 2011 Paul Seidler
+# Distributed under the terms of the GNU General Public License v2
+
+require enlightenment autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
+
+SUMMARY="Enlightenment, the window manager."
+DESCRIPTION="
+The Enlightenment Desktop shell provides an efficient yet breathtaking window manager based on the
+Enlightenment Foundation Libraries along with other essential desktop components like a file
+manager, desktop icons and widgets.
+It boasts a un-precedented level of theme-ability while still being capable of performing on older
+hardware or embedded devices.
+"
+DOWNLOADS="ftp://188.40.155.44/distfiles/${PNV}.tar.xz"
+
+LICENCES="BSD-2"
+SLOT="0"
+PLATFORMS="amd64"
+MYOPTIONS="pam"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        sys-devel/gettext[>=0.12.1]
+        x11-proto/xproto
+    build+run:
+        enlightenment-platform/e_dbus[>=1.0.0][notify] [[ note = [ notify is automagic ] ]]
+        enlightenment-platform/ecore[>=1.0.0][evas][X]
+        enlightenment-platform/edje[>=1.0.0]
+        enlightenment-platform/eet[>=1.4.0]
+        enlightenment-platform/eeze[>=1.0.0]
+        enlightenment-platform/efreet[>=1.0.0]
+        enlightenment-platform/eina[>=1.0.0]
+        enlightenment-platform/evas[>=1.0.0]
+        sys-apps/dbus[>=1]
+        sys-power/pm-utils
+        sys-sound/alsa-lib[>=1.0.8] [[ note = [ automagic ] ]]
+        x11-libs/libX11
+        x11-libs/libXext
+        pam? ( sys-libs/pam )
+"
+
+AT_M4DIR=( 'm4' )
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-bluez' # needs ebluez >=1.0.0
+    '--disable-connman' # not in a repo needs econnman >=1.0.0
+    '--disable-ofono' # not in a repo needs eofono >=1.0.0
+    '--disable-device-hal'
+    '--disable-mount-eeze' # hard disabled in this snapshot, needs eeze
+    '--disable-mount-hal'
+    '--disable-mount-udisks' # not in a repo needs eukit >=1.0.0
+    '--disable-illume' # needs ehal
+
+    '--enable-simple-x11'
+    '--enable-device-udev'
+
+    '--with-x'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( pam )
+
+src_prepare() {
+    edo autopoint -f
+    autotools_src_prepare
+}
+
+src_install() {
+    default
+
+    # from upstream
+    edo sed -ie 's,/etc/acpi/sleep.sh force,/usr/sbin/pm-suspend,' \
+        "${IMAGE}/etc/enlightenment/sysactions.conf"
+    edo sed -ie 's,/etc/acpi/hibernate.sh force,/usr/sbin/pm-hibernate,' \
+        "${IMAGE}/etc/enlightenment/sysactions.conf"
+}
+
