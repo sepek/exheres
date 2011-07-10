@@ -21,6 +21,7 @@ MYOPTIONS="jpeg tiff"
 
 DEPENDENCIES="
     build+run:
+        sys-libs/zlib
         jpeg? ( media-libs/jpeg )
         tiff? ( media-libs/tiff )
 "
