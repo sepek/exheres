@@ -1,7 +1,7 @@
 # Copyright 2011 Paul Seidler
 # Distributed under the terms of the GNU General Public License v2
 
-require gnome.org gtk-icon-cache
+require gnome.org gtk-icon-cache python [ python_dep=2.5 ]
 
 SUMMARY="Daemon to setup your DVB devices, record and watch TV shows and browse EPG"
 HOMEPAGE="http://live.gnome.org/DVBDaemon"
@@ -22,7 +22,6 @@ DEPENDENCIES="
         base/libgee:1.0[>=0.5.0]
         dev-db/sqlite:3[>=3.4]
         dev-libs/glib[>=2.28.5]
-        dev-lang/python:=[>=2.5]
         dev-python/gst-python
         gnome-bindings/pygobject:2[>=2.28.4]
         gnome-desktop/gobject-introspection
