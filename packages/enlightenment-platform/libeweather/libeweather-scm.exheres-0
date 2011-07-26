@@ -3,7 +3,7 @@
 
 require enlightenment [ scm_pn="PROTO/${PN}" ]
 
-SUMMARY="Access to weather dada"
+SUMMARY="Access to weather data"
 HOMEPAGE="http://www.enlightenment.org/"
 
 LICENCES="LGPL-2.1"
