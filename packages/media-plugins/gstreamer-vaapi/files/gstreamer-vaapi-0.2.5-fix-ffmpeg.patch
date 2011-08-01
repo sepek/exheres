@@ -1,0 +1,55 @@
+From a9a9d72e96700aa2af0a1fbd4da0ef00fc5f7fbb Mon Sep 17 00:00:00 2001
+From: Gwenole Beauchesne <gwenole.beauchesne@intel.com>
+Date: Fri, 22 Jul 2011 15:55:47 +0200
+Subject: [PATCH] Fix build with newer FFmpeg versions.
+Upstream: yes
+
+---
+ gst-libs/gst/vaapi/gstvaapidecoder_ffmpeg.c |   15 +++++++++++----
+ 1 files changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/gst-libs/gst/vaapi/gstvaapidecoder_ffmpeg.c b/gst-libs/gst/vaapi/gstvaapidecoder_ffmpeg.c
+index 8124a3c..c3c259a 100644
+--- a/gst-libs/gst/vaapi/gstvaapidecoder_ffmpeg.c
++++ b/gst-libs/gst/vaapi/gstvaapidecoder_ffmpeg.c
+@@ -478,13 +478,18 @@ decode_frame(GstVaapiDecoderFfmpeg *ffdecoder, guchar *buf, guint buf_size)
+     GstVaapiDisplay * const display = GST_VAAPI_DECODER_DISPLAY(ffdecoder);
+     GstVaapiSurface *surface;
+     int bytes_read, got_picture = 0;
++    AVPacket pkt;
++
++    av_init_packet(&pkt);
++    pkt.data = buf;
++    pkt.size = buf_size;
+ 
+     GST_VAAPI_DISPLAY_LOCK(display);
+-    bytes_read = avcodec_decode_video(
++    bytes_read = avcodec_decode_video2(
+         priv->avctx,
+         priv->frame,
+         &got_picture,
+-        buf, buf_size
++        &pkt
+     );
+     GST_VAAPI_DISPLAY_UNLOCK(display);
+     if (!got_picture)
+@@ -530,12 +535,14 @@ gst_vaapi_decoder_ffmpeg_decode(GstVaapiDecoder *decoder, GstBuffer *buffer)
+ 
+     if (priv->pctx) {
+         do {
+-            int parsed_size = av_parser_parse(
++            int parsed_size;
++            parsed_size = av_parser_parse2(
+                 priv->pctx,
+                 priv->avctx,
+                 &outbuf, &outbuf_size,
+                 GST_BUFFER_DATA(buffer) + inbuf_ofs, inbuf_size,
+-                inbuf_ts, inbuf_ts
++                inbuf_ts, inbuf_ts,
++                AV_NOPTS_VALUE
+             );
+             got_frame = outbuf && outbuf_size > 0;
+ 
+-- 
+1.6.1
+

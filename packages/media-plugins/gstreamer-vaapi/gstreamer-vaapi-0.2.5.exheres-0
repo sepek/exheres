@@ -26,6 +26,8 @@ DEPENDENCIES="
         opengl? ( x11-dri/mesa )
 "
 
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix-ffmpeg.patch" )
+
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gtk-doc'
     'opengl glx'
