@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require gnu
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
 
 SUMMARY="Unique multiplayer wargame"
 DESCRIPTION="
@@ -23,6 +22,7 @@ MYOPTIONS="
     http [[ description = [ HTTP support for multiplayer (e.g. to use a proxy) ] ]]
 "
 
+# TODO: optional Google PerfTools
 DEPENDENCIES="
     build:
         dev-util/pkg-config
@@ -51,7 +51,6 @@ AT_M4DIR=( 'm4' )
 # require user input
 RESTRICT="test"
 
-DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-fix_configure_typo.patch" )
 # TODO: mod-csound missing dep
 # mod-gl is actually the only backend and a must have, also mod-ogg
 DEFAULT_SRC_CONFIGURE_PARAMS=( '--disable-mod-sound' '--enable-mod-gl' '--enable-mod-ogg' )
