@@ -24,6 +24,7 @@ DEPENDENCIES="
         media/ffmpeg
         exif? ( media-libs/libexif )
 "
+DEFAULT_SRC_PREPARE_PATCHES=( "${FILES}/${PNV}-ffmpeg-compatibility.patch" )
 
 GEEXBOX_SRC_CONFIGURE_PARAMS+=( '--disable-grabber-nfo' )
 GEEXBOX_SRC_CONFIGURE_OPTION_ENABLES+=( 'exif grabber-exif' )
