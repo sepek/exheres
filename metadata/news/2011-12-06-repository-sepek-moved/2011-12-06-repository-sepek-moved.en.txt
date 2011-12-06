@@ -1,0 +1,15 @@
+Title: Repository sepek moved to git.exherbo.org
+Author: Paul Seidler <sepek@exherbo.org>
+Content-Type: text/plain
+Posted: 2011-12-06
+Revision: 1
+News-Item-Format: 1.0
+
+::sepek was moved to git.exherbo.org.
+
+To receive further updates from this repository you need to change the
+'sync' field in the repository config file, which is usually located at
+
+    /etc/paludis/repositories/sepek.conf
+
+to "git://git.exherbo.org/dev/sepek.git".
